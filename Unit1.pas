@@ -96,6 +96,9 @@ procedure TForm1.Button4Click(Sender: TObject);
 begin
 FreeList(StartList, EndList);
 Button5.Enabled:=false;
+Button7.Click;
+Label3.Caption:='Список пуст';
+
 end;
 
 procedure TForm1.Button3Click(Sender: TObject);
@@ -150,21 +153,20 @@ procedure TForm1.Button5Click(Sender: TObject);
 var
   ListC: PElem;
   flag: boolean;
-  k,max,maxk:integer;
+  k,max:integer;
 begin
 
   ListC:=StartList;
   k:=0;
   max:=StartList^.info;
-  maxk:=0;
   while (ListC<>nil) do begin
 
   inc(k);          // номер элемента списка
 
     if abs(ListC^.info)>=max then begin
-    maxk:=k;
+
     max:=abs(ListC^.info);
-    Label3.Caption:=IntToStr(maxk) + ' - последний максимальный';
+    Label3.Caption:=IntToStr(k) + ' - последний максимальный';
     ListC:=ListC^.next;
     Label3.Visible:=true;
     end else ListC:=ListC^.next;

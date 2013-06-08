@@ -204,7 +204,7 @@ object Form1: TForm1
   end
   object Button7: TButton
     Left = 360
-    Top = 216
+    Top = 215
     Width = 193
     Height = 25
     Caption = #1055#1086#1082#1072#1079#1072#1090#1100' '#1089#1087#1080#1089#1086#1082
