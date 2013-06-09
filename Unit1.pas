@@ -108,11 +108,21 @@ begin
 if (Edit2.Text <> '') then begin
   insert:=strtoint(Edit2.Text);
   if (insert>=minrandom) and (insert<=maxrandom) then
+  begin
+  Button5.Enabled:=true;
   AddListItem(StartList, Endlist, insert)
-  else ShowMessage('Некорректное число '+ Edit2.Text);
-end else ShowMessage('Введите число');
+  end
+  else
+  begin
+  (ShowMessage('Некорректное число '));
+  Button5.Enabled:=false;
+  end;
+end
+else
+begin ShowMessage('Введите число');
+Button5.Enabled:=false;
+end;
 Button7.Click;
-Button5.Enabled:=true;
 Button5.Click;
 end;
 
@@ -155,14 +165,11 @@ var
   flag: boolean;
   k,max:integer;
 begin
-
   ListC:=StartList;
   k:=0;
-  max:=StartList^.info;
+  max:=0;
   while (ListC<>nil) do begin
-
   inc(k);          // номер элемента списка
-
     if abs(ListC^.info)>=max then begin
 
     max:=abs(ListC^.info);
@@ -187,7 +194,11 @@ if OpenDialog1.Execute then begin
 
       readln(f, i);
 
-        if (i>=minrandom) AND (i<=maxrandom) then AddListItem(StartList, EndList,i)
+        if (i>=minrandom) AND (i<=maxrandom) then
+        begin AddListItem(StartList, EndList,i);
+        Button5.Enabled:=true;
+        Button5.Click;
+        end
         else ShowMessage('Неподходящее число в файле: '+ IntToStr(i));
       end;
   except
@@ -199,11 +210,12 @@ if OpenDialog1.Execute then begin
   except
     ShowMessage('Не удалось открыть текстовый файл '+ OpenDialog1.FileName);
 end;
- end else
+ end
+ else
   ShowMessage('Текстовый файл не задан! Операция отменена');
+
 Button7.Click;
-Button5.Enabled:=true;
-Button5.Click;
+
 end;
 
 end.
